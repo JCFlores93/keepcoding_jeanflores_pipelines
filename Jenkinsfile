@@ -1,6 +1,5 @@
 node {
     stage("Say Hello") {
-        echo "Hola Mundo"
         steps{
             echo "====++++executing A++++===="
         }
