@@ -3,15 +3,19 @@ pipeline {
         label("python")
     }
     stages {
-        stage("Test") {
+        stage("Build") {
             steps {
-                sh 'echo hola'
+                dir("python-app-example") {
+                    sh 'pip install -r requirements.txt'
+                }
             }
         }
         
-        stage("Is there any python?") {
+        stage("Unit Test") {
             steps {
-                sh 'python --version'
+                dir("python-app-example") {
+                    sh 'python -m coverage run -m pytest -s -v'
+                }
             }
         }
     }
