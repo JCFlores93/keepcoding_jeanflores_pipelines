@@ -1,18 +1,17 @@
-node {
-    stage("Say Hello") {
-        echo "Hola Mundo"
-        steps{
-            echo "====++++executing A++++===="
+pipeline {
+    agent {
+        label("base")
+    }
+    stages {
+        stage("Test") {
+            steps {
+                sh 'echo hola'
+            }
         }
-        post{
-            always{
-                echo "====++++always++++===="
-            }
-            success{
-                echo "====++++A executed successfully++++===="
-            }
-            failure{
-                echo "====++++A execution failed++++===="
+        
+        stage("Is there any python?") {
+            steps {
+                sh 'python --version'
             }
         }
     }
